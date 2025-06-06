@@ -1,0 +1,2159 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRIPUP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Modern Color Palette */
+        :root {
+            --primary: #6e8efb;
+            --primary-dark: #5a7df4;
+            --secondary: #a777e3;
+            --accent: #4caf50;
+            --danger: #f44336;
+            --warning: #ffb400;
+            --light: #f8f9fa;
+            --dark: #333;
+            --gray: #666;
+            --light-gray: #eee;
+            --white: #fff;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Smooth Scroll Behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Login Page - Modern Gradient Background */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .login-container::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+                animation: rotate 20s linear infinite;
+            }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .login-box {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+            .login-box:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            }
+
+            .login-box h1 {
+                margin-bottom: 30px;
+                color: var(--dark);
+                font-size: 24px;
+                font-weight: 700;
+                position: relative;
+                display: inline-block;
+            }
+
+                .login-box h1::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -10px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 50px;
+                    height: 3px;
+                    background: linear-gradient(to right, var(--primary), var(--secondary));
+                    border-radius: 3px;
+                }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+            .input-group i {
+                position: absolute;
+                left: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: var(--gray);
+                transition: var(--transition);
+            }
+
+            .input-group input {
+                width: 100%;
+                padding: 15px 15px 15px 45px;
+                border: 1px solid var(--light-gray);
+                border-radius: 8px;
+                font-size: 16px;
+                transition: var(--transition);
+            }
+
+                .input-group input:focus {
+                    border-color: var(--primary);
+                    outline: none;
+                    box-shadow: 0 0 0 3px rgba(110, 142, 251, 0.2);
+                }
+
+                    .input-group input:focus + i {
+                        color: var(--primary);
+                    }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(110, 142, 251, 0.3);
+        }
+
+            .login-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(110, 142, 251, 0.4);
+            }
+
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+            .login-options a {
+                color: var(--primary);
+                text-decoration: none;
+                transition: var(--transition);
+            }
+
+                .login-options a:hover {
+                    color: var(--secondary);
+                    text-decoration: underline;
+                }
+
+        .social-login {
+            margin-top: 30px;
+        }
+
+            .social-login p {
+                margin-bottom: 15px;
+                color: var(--gray);
+                position: relative;
+            }
+
+                .social-login p::before,
+                .social-login p::after {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    width: 30%;
+                    height: 1px;
+                    background: var(--light-gray);
+                }
+
+                .social-login p::before {
+                    left: 0;
+                }
+
+                .social-login p::after {
+                    right: 0;
+                }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .social-btn:hover {
+                transform: translateY(-3px) scale(1.1);
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            }
+
+            .social-btn.google {
+                background: linear-gradient(to right, #db4437, #e57368);
+                color: var(--white);
+            }
+
+            .social-btn.facebook {
+                background: linear-gradient(to right, #4267B2, #5b7bd5);
+                color: var(--white);
+            }
+
+            .social-btn.apple {
+                background: linear-gradient(to right, #000, #333);
+                color: var(--white);
+            }
+
+        /* App Container - Modern Card Design */
+        .app-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: var(--white);
+            min-height: 100vh;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Header with Gradient Background */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+            header::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Q50,80 0,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+                background-size: 100% 100%;
+                opacity: 0.2;
+            }
+
+            header h1 {
+                font-size: 20px;
+                font-weight: 700;
+                position: relative;
+                z-index: 1;
+            }
+
+        .user-profile {
+            font-size: 24px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            z-index: 1;
+        }
+
+            .user-profile:hover {
+                transform: scale(1.1);
+                color: rgba(255, 255, 255, 0.9);
+            }
+
+        /* Wallet Balance - Modern Card */
+        .wallet-balance {
+            padding: 25px 20px;
+            background: var(--white);
+            text-align: center;
+            margin: 20px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+            .wallet-balance::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 5px;
+                background: linear-gradient(to right, var(--primary), var(--secondary));
+            }
+
+            .wallet-balance:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+
+        .balance-display {
+            margin-bottom: 20px;
+        }
+
+        .amount {
+            font-size: 42px;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .currency {
+            font-size: 16px;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .balance-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+            .balance-actions button {
+                padding: 12px 25px;
+                border: none;
+                border-radius: 8px;
+                background: linear-gradient(to right, var(--primary), var(--secondary));
+                color: var(--white);
+                font-weight: 600;
+                cursor: pointer;
+                transition: var(--transition);
+                box-shadow: 0 4px 15px rgba(110, 142, 251, 0.3);
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+                .balance-actions button i {
+                    font-size: 16px;
+                }
+
+                .balance-actions button:hover {
+                    transform: translateY(-3px);
+                    box-shadow: 0 6px 20px rgba(110, 142, 251, 0.4);
+                }
+
+        /* Navigation - Modern Tabs */
+        .main-nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            background: var(--white);
+            position: relative;
+        }
+
+            .main-nav::before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 1px;
+                background: linear-gradient(to right, transparent, var(--light-gray), transparent);
+            }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: none;
+            border: none;
+            color: var(--gray);
+            cursor: pointer;
+            font-size: 12px;
+            transition: var(--transition);
+            position: relative;
+            padding: 10px 5px;
+        }
+
+            .nav-item i {
+                font-size: 22px;
+                margin-bottom: 5px;
+                transition: var(--transition);
+            }
+
+            .nav-item.active {
+                color: var(--primary);
+            }
+
+                .nav-item.active i {
+                    transform: translateY(-5px);
+                }
+
+                .nav-item.active::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 30px;
+                    height: 3px;
+                    background: linear-gradient(to right, var(--primary), var(--secondary));
+                    border-radius: 3px;
+                }
+
+            .nav-item:hover {
+                transform: translateY(-3px);
+                color: var(--primary);
+            }
+
+        /* Content Area */
+        .content-area {
+            padding: 20px;
+            padding-bottom: 80px;
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+            .content-section.active {
+                display: block;
+            }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+            position: relative;
+            padding-left: 15px;
+        }
+
+            h2::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 4px;
+                height: 18px;
+                background: linear-gradient(to bottom, var(--primary), var(--secondary));
+                border-radius: 2px;
+            }
+
+        /* Quick Actions - Grid Layout */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .action-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 15px;
+            background-color: var(--white);
+            border: 1px solid var(--light-gray);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+            .action-btn:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+                border-color: var(--primary);
+            }
+
+            .action-btn i {
+                font-size: 28px;
+                margin-bottom: 12px;
+                background: linear-gradient(to right, var(--primary), var(--secondary));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                transition: var(--transition);
+            }
+
+            .action-btn:hover i {
+                transform: scale(1.1);
+            }
+
+            .action-btn span {
+                font-weight: 600;
+                color: var(--dark);
+                transition: var(--transition);
+            }
+
+            .action-btn:hover span {
+                color: var(--primary);
+            }
+
+        /* Transactions List - Modern Cards */
+        .transactions-list, .full-transactions-list {
+            margin-top: 15px;
+        }
+
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 12px;
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+            .transaction-item::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 4px;
+                height: 100%;
+                background: var(--light-gray);
+            }
+
+            .transaction-item.positive::before {
+                background: var(--accent);
+            }
+
+            .transaction-item.negative::before {
+                background: var(--danger);
+            }
+
+            .transaction-item:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+        .transaction-details {
+            flex: 1;
+        }
+
+            .transaction-details h3 {
+                font-size: 16px;
+                margin-bottom: 5px;
+                color: var(--dark);
+            }
+
+            .transaction-details p {
+                font-size: 12px;
+                color: var(--gray);
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+
+                .transaction-details p i {
+                    font-size: 10px;
+                }
+
+        .transaction-amount {
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+            .transaction-amount.positive {
+                color: var(--accent);
+            }
+
+            .transaction-amount.negative {
+                color: var(--danger);
+            }
+
+        /* Bookings Section - Modern Cards */
+        .bookings-list {
+            margin-top: 15px;
+        }
+
+        .booking-card {
+            display: flex;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+            .booking-card::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 4px;
+                height: 100%;
+                background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            }
+
+            .booking-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            }
+
+        .booking-icon {
+            font-size: 24px;
+            color: var(--primary);
+            margin-right: 15px;
+            min-width: 40px;
+            height: 40px;
+            background: rgba(110, 142, 251, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .booking-card:hover .booking-icon {
+            background: rgba(110, 142, 251, 0.2);
+            transform: scale(1.1);
+        }
+
+        .booking-details {
+            flex: 1;
+        }
+
+            .booking-details h3 {
+                font-size: 16px;
+                margin-bottom: 5px;
+                color: var(--dark);
+            }
+
+            .booking-details p {
+                font-size: 12px;
+                color: var(--gray);
+                margin-bottom: 3px;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+
+                .booking-details p i {
+                    font-size: 12px;
+                    color: var(--primary);
+                }
+
+        /* Insurance Card - Modern Design */
+        .insurance-card {
+            padding: 20px;
+            margin-bottom: 15px;
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+            .insurance-card::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 4px;
+                height: 100%;
+                background: linear-gradient(to bottom, var(--accent), #81c784);
+            }
+
+            .insurance-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            }
+
+        .insurance-status {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+            .insurance-status i {
+                color: var(--accent);
+                margin-right: 5px;
+                font-size: 18px;
+            }
+
+            .insurance-status span {
+                font-size: 14px;
+                color: var(--accent);
+                font-weight: 600;
+            }
+
+        .insurance-details h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .insurance-details p {
+            font-size: 13px;
+            color: var(--gray);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+            .insurance-details p i {
+                color: var(--primary);
+                font-size: 12px;
+            }
+
+        .insurance-action {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(110, 142, 251, 0.3);
+        }
+
+            .insurance-action:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 6px 20px rgba(110, 142, 251, 0.4);
+            }
+
+        /* Modal Styles - Modern Design */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease-out;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            padding: 25px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--gray);
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+            .close-modal:hover {
+                color: var(--danger);
+                transform: rotate(90deg) scale(1.1);
+                background: rgba(244, 67, 54, 0.1);
+            }
+
+        .modal h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 20px;
+            color: var(--dark);
+            padding: 0;
+        }
+
+            .modal h2::before {
+                display: none;
+            }
+
+        .currency-selector, .amount-input, .form-group {
+            margin-bottom: 20px;
+        }
+
+            .currency-selector label, .amount-input label, .form-group label {
+                display: block;
+                margin-bottom: 8px;
+                font-weight: 600;
+                color: var(--dark);
+                font-size: 14px;
+            }
+
+            .currency-selector select, .amount-input input, .form-group input, .form-group select {
+                width: 100%;
+                padding: 12px 15px;
+                border: 1px solid var(--light-gray);
+                border-radius: 8px;
+                font-size: 16px;
+                transition: var(--transition);
+                background-color: var(--white);
+            }
+
+                .currency-selector select:focus, .amount-input input:focus, .form-group input:focus, .form-group select:focus {
+                    border-color: var(--primary);
+                    outline: none;
+                    box-shadow: 0 0 0 3px rgba(110, 142, 251, 0.2);
+                }
+
+        #confirm-add-funds, #confirm-send-money {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(110, 142, 251, 0.3);
+            font-size: 16px;
+        }
+
+            #confirm-add-funds:hover, #confirm-send-money:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 6px 20px rgba(110, 142, 251, 0.4);
+            }
+
+        /* Toast Notification - Modern Design */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 14px 24px;
+            border-radius: 8px;
+            z-index: 1000;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 90%;
+        }
+
+            .toast i {
+                font-size: 20px;
+            }
+
+            .toast.success i {
+                color: var(--accent);
+            }
+
+            .toast.error i {
+                color: var(--danger);
+            }
+
+            .toast.warning i {
+                color: var(--warning);
+            }
+
+            .toast.show {
+                transform: translateX(-50%) translateY(0);
+            }
+
+        /* Responsive Adjustments */
+        @media (max-width: 480px) {
+            .login-box {
+                padding: 30px 20px;
+                border-radius: 12px;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .balance-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+                .balance-actions button {
+                    width: 100%;
+                }
+
+            .hotel-result, .activity-result {
+                flex-direction: column;
+            }
+
+            .hotel-image, .activity-image {
+                width: 100%;
+                height: 150px;
+            }
+
+            .hotel-price, .activity-price {
+                text-align: left;
+                margin-top: 10px;
+            }
+
+            .modal-content {
+                padding: 20px 15px;
+            }
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 6px 20px rgba(110, 142, 251, 0.3);
+            cursor: pointer;
+            z-index: 100;
+            transition: var(--transition);
+        }
+
+            .fab:hover {
+                transform: translateY(-5px) scale(1.1);
+                box-shadow: 0 10px 30px rgba(110, 142, 251, 0.4);
+            }
+
+        /* Pulse Animation */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(110, 142, 251, 0.2);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Login Page (shown by default) -->
+    <div id="login-page" class="login-container">
+        <div class="login-box">
+            <h1>Welcome to  TRIPUP!! all in one tourism digitalisation</h1>
+            <form id="login-form">
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="login-email" placeholder="Email" required value="stmaphosa17@gmail.com">
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="login-password" placeholder="Password" required value="password123">
+                </div>
+                <button type="submit" class="login-btn">Log In</button>
+                <div class="login-options">
+                    <a href="#" id="forgot-password">Forgot password?</a>
+                    <a href="#" id="sign-up">Sign up</a>
+                </div>
+                <div class="social-login">
+                    <p>Or log in with:</p>
+                    <div class="social-icons">
+                        <button type="button" class="social-btn google" id="google-login">
+                            <i class="fab fa-google"></i>
+                        </button>
+                        <button type="button" class="social-btn facebook" id="facebook-login">
+                            <i class="fab fa-facebook-f"></i>
+                        </button>
+                        <button type="button" class="social-btn apple" id="apple-login">
+                            <i class="fab fa-apple"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main App (hidden until login) -->
+    <div id="app-container" class="app-container" style="display: none;">
+        <header>
+            <img src="images/background.jpg" alt="Logo" style="height: 50px; margin-right: 10px;">
+            <h1> TRIPUP</h1>
+            <div class="user-profile">
+                <i class="fas fa-user-circle" id="logout-btn"></i>
+            </div>
+        </header>
+
+        <div class="wallet-balance">
+            <div class="balance-display">
+                <span class="amount" id="balance-amount">0.00</span>
+                <span class="currency">USD</span>
+            </div>
+            <div class="balance-actions">
+                <button id="add-funds">Add Funds</button>
+                <button id="send-money">Send Money</button>
+            </div>
+        </div>
+
+        <nav class="main-nav">
+            <button class="nav-item active" data-section="dashboard">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </button>
+            <button class="nav-item" data-section="transactions">
+                <i class="fas fa-exchange-alt"></i>
+                <span>Transactions</span>
+            </button>
+            <button class="nav-item" data-section="bookings">
+                <i class="fas fa-hotel"></i>
+                <span>Bookings</span>
+            </button>
+            <button class="nav-item" data-section="insurance">
+                <i class="fas fa-shield-alt"></i>
+                <span>Insurance</span>
+            </button>
+        </nav>
+
+        <main class="content-area">
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="content-section active">
+                <h2>Quick Actions</h2>
+                <div class="quick-actions">
+                    <button class="action-btn" id="book-flight-btn">
+                        <i class="fas fa-plane"></i>
+                        <span>Book Flight</span>
+                    </button>
+                    <button class="action-btn" id="find-hotel-btn">
+                        <i class="fas fa-hotel"></i>
+                        <span>Find Hotel</span>
+                    </button>
+                    <button class="action-btn" id="currency-exchange-btn">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>Currency Exchange</span>
+                    </button>
+                    <button class="action-btn" id="activities-btn">
+                        <i class="fas fa-umbrella-beach"></i>
+                        <span>Activities</span>
+                    </button>
+                </div>
+
+                <h2>Recent Transactions</h2>
+                <div class="transactions-list">
+                    <!-- Transactions will be loaded here via JS -->
+                </div>
+            </section>
+
+            <!-- Transactions Section -->
+            <section id="transactions-section" class="content-section">
+                <h2>All Transactions</h2>
+                <div class="full-transactions-list">
+                    <!-- All transactions will be loaded here via JS -->
+                </div>
+            </section>
+
+            <!-- Bookings Section -->
+            <section id="bookings-section" class="content-section">
+                <h2>Your Bookings</h2>
+                <div class="bookings-list">
+                    <!-- Bookings will be loaded here via JS -->
+                </div>
+            </section>
+
+            <!-- Insurance Section -->
+            <section id="insurance-section" class="content-section">
+                <h2>Travel Insurance</h2>
+                <div class="insurance-card">
+                    <div class="insurance-status active">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Active</span>
+                    </div>
+                    <div class="insurance-details">
+                        <h3>Global Travel Protection</h3>
+                        <p>Coverage until: <span id="insurance-end-date"></span></p>
+                        <p>Emergency funds: $10,000 available</p>
+                    </div>
+                    <button class="insurance-action" id="request-assistance-btn">Request Assistance</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="add-funds-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Add Funds</h2>
+            <div class="currency-selector">
+                <label for="currency">Currency:</label>
+                <select id="currency">
+                    <option value="USD">USD - US Dollar</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="GBP">GBP - British Pound</option>
+                    <option value="JPY">JPY - Japanese Yen</option>
+                    <option value="ZIG">ZIG - Zimbabwe Zig</option>
+                </select>
+            </div>
+            <div class="amount-input">
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" placeholder="0.00">
+            </div>
+            <button id="confirm-add-funds">Add Funds</button>
+        </div>
+    </div>
+
+    <div id="send-money-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Send Money</h2>
+            <div class="form-group">
+                <label for="recipient-email">Recipient Email:</label>
+                <input type="email" id="recipient-email" placeholder="Enter recipient's email">
+            </div>
+            <div class="form-group">
+                <label for="send-amount">Amount:</label>
+                <input type="number" id="send-amount" placeholder="0.00">
+            </div>
+            <div class="form-group">
+                <label for="send-currency">Currency:</label>
+                <select id="send-currency">
+                    <option value="USD">USD - US Dollar</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="GBP">GBP - British Pound</option>
+                    <option value="JPY">JPY - Japanese Yen</option>
+                    <option value="ZIG">ZIG - Zimbabwe Zig</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Current Balance: <span id="wallet-balance">0.00 USD</span></label>
+            </div>
+            <div class="form-group">
+                <label for="send-message">Message (Optional):</label>
+                <input type="text" id="send-message" placeholder="Add a note">
+            </div>
+            <button id="confirm-send-money">Send Money</button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast-notification"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Current date setup
+            const currentDate = new Date();
+            const nextMonthDate = new Date();
+            nextMonthDate.setMonth(currentDate.getMonth() + 1);
+            const nextYearDate = new Date();
+            nextYearDate.setFullYear(currentDate.getFullYear() + 1);
+
+            // Format date as "Month Day, Year"
+            function formatDate(date) {
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                return date.toLocaleDateString('en-US', options);
+            }
+
+            // Format date as "YYYY-MM-DD" for input fields
+            function formatDateInput(date) {
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                return `${year}-${month}-${day}`;
+            }
+
+            // Show toast notification
+            function showToast(message, duration = 3000) {
+                const toast = document.getElementById('toast-notification');
+                toast.textContent = message;
+                toast.classList.add('show');
+
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, duration);
+            }
+
+            // Login functionality
+            const loginPage = document.getElementById('login-page');
+            const appContainer = document.getElementById('app-container');
+            const loginForm = document.getElementById('login-form');
+            const logoutBtn = document.getElementById('logout-btn');
+
+            // Check if user is already logged in (from localStorage)
+            if (localStorage.getItem('isLoggedIn') === 'true') {
+                loginPage.style.display = 'none';
+                appContainer.style.display = 'block';
+            }
+
+            // Handle login form submission
+            loginForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+
+                // Hardcoded credentials check
+                if (email === 'stmaphosa17@gmail.com' && password === 'password123') {
+                    // Store login state
+                    localStorage.setItem('isLoggedIn', 'true');
+
+                    // Hide login page and show app
+                    loginPage.style.display = 'none';
+                    appContainer.style.display = 'block';
+
+                    // Initialize the app after login
+                    init();
+
+                    // Show welcome toast
+                    showToast(`Welcome back, ${email.split('@')[0]}!`);
+                } else {
+                    showToast('Invalid credentials. Try stmaphosa17@gmail.com and password123');
+                }
+            });
+
+            // Social login buttons
+            document.getElementById('google-login').addEventListener('click', function () {
+                showToast('Signing in with Google...');
+                setTimeout(() => {
+                    localStorage.setItem('isLoggedIn', 'true');
+                    loginPage.style.display = 'none';
+                    appContainer.style.display = 'block';
+                    init();
+                    showToast('Logged in with Google successfully!');
+                }, 1500);
+            });
+
+            document.getElementById('facebook-login').addEventListener('click', function () {
+                showToast('Signing in with Facebook...');
+                setTimeout(() => {
+                    localStorage.setItem('isLoggedIn', 'true');
+                    loginPage.style.display = 'none';
+                    appContainer.style.display = 'block';
+                    init();
+                    showToast('Logged in with Facebook successfully!');
+                }, 1500);
+            });
+
+            document.getElementById('apple-login').addEventListener('click', function () {
+                showToast('Signing in with Apple...');
+                setTimeout(() => {
+                    localStorage.setItem('isLoggedIn', 'true');
+                    loginPage.style.display = 'none';
+                    appContainer.style.display = 'block';
+                    init();
+                    showToast('Logged in with Apple successfully!');
+                }, 1500);
+            });
+
+            // Handle logout
+            logoutBtn.addEventListener('click', function () {
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('walletBalance');
+                appContainer.style.display = 'none';
+                loginPage.style.display = 'flex';
+                showToast('Logged out successfully');
+
+                // Clear form fields
+                document.getElementById('login-email').value = 'stmaphosa17@gmail.com';
+                document.getElementById('login-password').value = 'password123';
+            });
+
+            // Forgot password link
+            document.getElementById('forgot-password').addEventListener('click', function (e) {
+                e.preventDefault();
+                const email = document.getElementById('login-email').value;
+                if (email) {
+                    showToast(`Password reset link sent to ${email}`);
+                } else {
+                    showToast('Please enter your email first');
+                }
+            });
+
+            // Sign up link
+            document.getElementById('sign-up').addEventListener('click', function (e) {
+                e.preventDefault();
+                showToast('Redirecting to sign up page...');
+            });
+
+            // Sample transaction data with current dates
+            const transactions = [
+                {
+                    id: 1,
+                    description: "Hotel Booking",
+                    amount: -250.75,
+                    currency: "USD",
+                    date: formatDate(new Date(currentDate.getTime() - 3 * 24 * 60 * 60 * 1000)), // 3 days ago
+                    category: "accommodation"
+                },
+                {
+                    id: 2,
+                    description: "Currency Exchange",
+                    amount: 500.00,
+                    currency: "EUR",
+                    date: formatDate(new Date(currentDate.getTime() - 5 * 24 * 60 * 60 * 1000)), // 5 days ago
+                    category: "exchange"
+                },
+                {
+                    id: 3,
+                    description: "Restaurant",
+                    amount: -35.20,
+                    currency: "USD",
+                    date: formatDate(new Date(currentDate.getTime() - 7 * 24 * 60 * 60 * 1000)), // 1 week ago
+                    category: "food"
+                },
+                {
+                    id: 4,
+                    description: "Flight Ticket",
+                    amount: -420.00,
+                    currency: "USD",
+                    date: formatDate(new Date(currentDate.getTime() - 10 * 24 * 60 * 60 * 1000)), // 10 days ago
+                    category: "transport"
+                },
+                {
+                    id: 5,
+                    description: "Activity Booking",
+                    amount: -75.50,
+                    currency: "USD",
+                    date: formatDate(new Date(currentDate.getTime() - 2 * 24 * 60 * 60 * 1000)), // 2 days ago
+                    category: "activity"
+                }
+            ];
+
+            // Sample bookings data with current and future dates
+            const bookings = [
+                {
+                    id: 1,
+                    type: "hotel",
+                    title: "Holiday In Hotel",
+                    checkIn: new Date(currentDate.getTime() + 5 * 24 * 60 * 60 * 1000), // 5 days from now
+                    checkOut: new Date(currentDate.getTime() + 8 * 24 * 60 * 60 * 1000), // 8 days from now
+                    amount: 450.00,
+                    currency: "USD",
+                    status: "confirmed"
+                },
+                {
+                    id: 2,
+                    type: "flight",
+                    title: "Flight to Paris",
+                    departure: new Date(currentDate.getTime() + 5 * 24 * 60 * 60 * 1000), // 5 days from now
+                    return: new Date(currentDate.getTime() + 12 * 24 * 60 * 60 * 1000), // 12 days from now
+                    amount: 620.00,
+                    currency: "USD",
+                    status: "confirmed"
+                },
+                {
+                    id: 3,
+                    type: "activity",
+                    title: "Zip Linning",
+                    date: new Date(currentDate.getTime() + 6 * 24 * 60 * 60 * 1000), // 6 days from now
+                    amount: 75.50,
+                    currency: "USD",
+                    status: "confirmed"
+                }
+            ];
+
+            // DOM Elements
+            const navItems = document.querySelectorAll('.nav-item');
+            const contentSections = document.querySelectorAll('.content-section');
+            const addFundsBtn = document.getElementById('add-funds');
+            const sendMoneyBtn = document.getElementById('send-money');
+            const addFundsModal = document.getElementById('add-funds-modal');
+            const sendMoneyModal = document.getElementById('send-money-modal');
+            const closeModalBtns = document.querySelectorAll('.close-modal');
+            const confirmAddFundsBtn = document.getElementById('confirm-add-funds');
+            const confirmSendMoneyBtn = document.getElementById('confirm-send-money');
+            const transactionsList = document.querySelector('.transactions-list');
+            const fullTransactionsList = document.querySelector('.full-transactions-list');
+            const bookingsList = document.querySelector('.bookings-list');
+            const insuranceEndDate = document.getElementById('insurance-end-date');
+            const requestAssistanceBtn = document.getElementById('request-assistance-btn');
+            const quickActionButtons = {
+                bookFlight: document.getElementById('book-flight-btn'),
+                findHotel: document.getElementById('find-hotel-btn'),
+                currencyExchange: document.getElementById('currency-exchange-btn'),
+                activities: document.getElementById('activities-btn')
+            };
+
+            // Set insurance end date to next year
+            insuranceEndDate.textContent = formatDate(nextYearDate);
+
+            // Initialize wallet balance from localStorage or set default
+            function getWalletBalance() {
+                const balance = localStorage.getItem('walletBalance');
+                return balance !== null ? parseFloat(balance) : 1000.00;
+            }
+
+            // Update wallet balance display
+            function updateBalanceDisplay() {
+                const balanceAmount = document.getElementById('balance-amount');
+                const walletBalance = document.getElementById('wallet-balance');
+                const balance = getWalletBalance();
+
+                if (balanceAmount) {
+                    balanceAmount.textContent = balance.toFixed(2);
+                }
+                if (walletBalance) {
+                    walletBalance.textContent = `${balance.toFixed(2)} USD`;
+                }
+            }
+
+            // Update wallet balance in storage
+            function updateWalletBalance(amount, isAddition = true) {
+                const currentBalance = getWalletBalance();
+                const newBalance = isAddition ? currentBalance + amount : currentBalance - amount;
+                localStorage.setItem('walletBalance', newBalance.toString());
+                updateBalanceDisplay();
+
+                // Add transaction to history
+                const newTransaction = {
+                    id: transactions.length + 1,
+                    description: isAddition ? "Funds Added" : "Money Transfer",
+                    amount: isAddition ? amount : -amount,
+                    currency: "USD",
+                    date: formatDate(new Date()),
+                    category: isAddition ? "deposit" : "transfer"
+                };
+                transactions.unshift(newTransaction);
+                renderTransactions(transactions.slice(0, 3), transactionsList);
+                renderTransactions(transactions, fullTransactionsList);
+            }
+
+            // Initialize the app
+            function init() {
+                // Initialize wallet balance if not set
+                if (localStorage.getItem('walletBalance') === null) {
+                    localStorage.setItem('walletBalance', '1000.00');
+                }
+
+                // Load transactions
+                renderTransactions(transactions.slice(0, 3), transactionsList);
+                renderTransactions(transactions, fullTransactionsList);
+
+                // Load bookings
+                renderBookings(bookings);
+
+                // Set up navigation
+                setupNavigation();
+
+                // Set up modals
+                setupModals();
+
+                // Set up service worker for offline capabilities
+                setupServiceWorker();
+
+                // Check online status
+                updateOnlineStatus();
+                window.addEventListener('online', updateOnlineStatus);
+                window.addEventListener('offline', updateOnlineStatus);
+
+                // Set up quick action buttons
+                setupQuickActionButtons();
+
+                // Initialize wallet balance display
+                updateBalanceDisplay();
+            }
+
+            // Render transactions to the DOM
+            function renderTransactions(transactions, container) {
+                container.innerHTML = '';
+
+                transactions.forEach(transaction => {
+                    const transactionEl = document.createElement('div');
+                    transactionEl.className = 'transaction-item';
+
+                    const isPositive = transaction.amount >= 0;
+                    const sign = isPositive ? '+' : '';
+
+                    transactionEl.innerHTML = `
+                            <div class="transaction-details">
+                                <h3>${transaction.description}</h3>
+                                <p>${transaction.date} • ${transaction.category}</p>
+                            </div>
+                            <div class="transaction-amount ${isPositive ? 'positive' : 'negative'}">
+                                ${sign}${transaction.currency} ${Math.abs(transaction.amount).toFixed(2)}
+                            </div>
+                        `;
+
+                    container.appendChild(transactionEl);
+                });
+            }
+
+            // Render bookings to the DOM
+            function renderBookings(bookings) {
+                bookingsList.innerHTML = '';
+
+                bookings.forEach(booking => {
+                    const bookingEl = document.createElement('div');
+                    bookingEl.className = 'booking-card';
+
+                    let icon, details;
+
+                    if (booking.type === 'hotel') {
+                        icon = '<i class="fas fa-hotel"></i>';
+                        details = `
+                                <h3>${booking.title}</h3>
+                                <p>Check-in: ${formatDate(booking.checkIn)}</p>
+                                <p>Check-out: ${formatDate(booking.checkOut)}</p>
+                                <p>Total: ${booking.currency} ${booking.amount.toFixed(2)}</p>
+                            `;
+                    } else if (booking.type === 'flight') {
+                        icon = '<i class="fas fa-plane"></i>';
+                        details = `
+                                <h3>${booking.title}</h3>
+                                <p>Departure: ${formatDate(booking.departure)}</p>
+                                <p>Return: ${formatDate(booking.return)}</p>
+                                <p>Total: ${booking.currency} ${booking.amount.toFixed(2)}</p>
+                            `;
+                    } else if (booking.type === 'activity') {
+                        icon = '<i class="fas fa-ticket-alt"></i>';
+                        details = `
+                                <h3>${booking.title}</h3>
+                                <p>Date: ${formatDate(booking.date)}</p>
+                                <p>Total: ${booking.currency} ${booking.amount.toFixed(2)}</p>
+                            `;
+                    }
+
+                    bookingEl.innerHTML = `
+                            <div class="booking-icon">
+                                ${icon}
+                            </div>
+                            <div class="booking-details">
+                                ${details}
+                            </div>
+                        `;
+
+                    bookingsList.appendChild(bookingEl);
+                });
+            }
+
+            // Set up navigation between sections
+            function setupNavigation() {
+                navItems.forEach(item => {
+                    item.addEventListener('click', () => {
+                        const sectionId = item.getAttribute('data-section');
+
+                        // Update active nav item
+                        navItems.forEach(navItem => navItem.classList.remove('active'));
+                        item.classList.add('active');
+
+                        // Show corresponding section
+                        contentSections.forEach(section => section.classList.remove('active'));
+                        document.getElementById(`${sectionId}-section`).classList.add('active');
+                    });
+                });
+            }
+
+            // Set up modal interactions
+            function setupModals() {
+                // Add Funds modal
+                addFundsBtn.addEventListener('click', () => {
+                    addFundsModal.style.display = 'flex';
+                });
+
+                // Send Money modal
+                sendMoneyBtn.addEventListener('click', () => {
+                    sendMoneyModal.style.display = 'flex';
+                });
+
+                // Close modals when clicking X
+                closeModalBtns.forEach(btn => {
+                    btn.addEventListener('click', function () {
+                        this.closest('.modal').style.display = 'none';
+                    });
+                });
+
+                // Close modals when clicking outside
+                window.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('modal')) {
+                        e.target.style.display = 'none';
+                    }
+                });
+
+                // Confirm Add Funds
+                confirmAddFundsBtn.addEventListener('click', () => {
+                    const amount = parseFloat(document.getElementById('amount').value);
+                    const currency = document.getElementById('currency').value;
+
+                    if (amount && amount > 0) {
+                        // Update wallet balance
+                        updateWalletBalance(amount, true);
+
+                        showToast(`Successfully added ${currency} ${amount.toFixed(2)} to your wallet!`);
+                        addFundsModal.style.display = 'none';
+                        document.getElementById('amount').value = '';
+                    } else {
+                        showToast('Please enter a valid amount');
+                    }
+                });
+
+                // Confirm Send Money
+                confirmSendMoneyBtn.addEventListener('click', () => {
+                    const amount = parseFloat(document.getElementById('send-amount').value);
+                    const currency = document.getElementById('send-currency').value;
+                    const email = document.getElementById('recipient-email').value;
+
+                    if (!email) {
+                        showToast('Please enter recipient email');
+                        return;
+                    }
+
+                    if (amount && amount > 0) {
+                        const currentBalance = getWalletBalance();
+                        if (amount > currentBalance) {
+                            showToast('Insufficient funds for this transaction');
+                            return;
+                        }
+
+                        // Update wallet balance
+                        updateWalletBalance(amount, false);
+
+                        showToast(`Sent ${currency} ${amount.toFixed(2)} to ${email}`);
+                        sendMoneyModal.style.display = 'none';
+                        document.getElementById('send-amount').value = '';
+                        document.getElementById('recipient-email').value = '';
+                    } else {
+                        showToast('Please enter a valid amount');
+                    }
+                });
+            }
+
+            // Set up service worker for offline capabilities
+            function setupServiceWorker() {
+                if ('serviceWorker' in navigator) {
+                    window.addEventListener('load', () => {
+                        navigator.serviceWorker.register('/sw.js').then(registration => {
+                            console.log('ServiceWorker registration successful');
+                        }).catch(err => {
+                            console.log('ServiceWorker registration failed: ', err);
+                        });
+                    });
+                }
+            }
+
+            // Update UI based on online/offline status
+            function updateOnlineStatus() {
+                const offlineIndicator = document.createElement('div');
+                offlineIndicator.className = 'offline-indicator';
+                offlineIndicator.textContent = 'Offline Mode - Changes will sync when online';
+                document.body.appendChild(offlineIndicator);
+
+                if (navigator.onLine) {
+                    offlineIndicator.classList.remove('show');
+                } else {
+                    offlineIndicator.classList.add('show');
+                }
+            }
+
+            // Set up quick action buttons
+            function setupQuickActionButtons() {
+                // Book Flight Button
+                quickActionButtons.bookFlight.addEventListener('click', function () {
+                    openServiceModal('Book a Flight', 'flights');
+                });
+
+                // Find Hotel Button
+                quickActionButtons.findHotel.addEventListener('click', function () {
+                    openServiceModal('Find a Hotel', 'hotels');
+                });
+
+                // Currency Exchange Button
+                quickActionButtons.currencyExchange.addEventListener('click', function () {
+                    openServiceModal('Currency Exchange', 'exchange');
+                });
+
+                // Activities Button
+                quickActionButtons.activities.addEventListener('click', function () {
+                    openServiceModal('Find Activities', 'activities');
+                });
+
+                // Request Assistance Button
+                requestAssistanceBtn.addEventListener('click', function () {
+                    showToast('Assistance request has been submitted. We will contact you shortly.');
+                });
+            }
+
+            // Function to open service modal
+            function openServiceModal(title, serviceType) {
+                // Create modal if it doesn't exist
+                let modal = document.getElementById('service-modal');
+                if (!modal) {
+                    modal = document.createElement('div');
+                    modal.id = 'service-modal';
+                    modal.className = 'modal';
+                    modal.innerHTML = `
+                            <div class="modal-content service-modal">
+                                <span class="close-modal">&times;</span>
+                                <h2>${title}</h2>
+                                <div class="service-content" id="service-content"></div>
+                                <div class="search-container">
+                                    <input type="text" id="service-search" placeholder="Search ${title.toLowerCase()}...">
+                                    <button id="search-btn">Search</button>
+                                </div>
+                                <div class="results-container" id="results-container"></div>
+                            </div>
+                        `;
+                    document.body.appendChild(modal);
+
+                    // Close modal when clicking X
+                    modal.querySelector('.close-modal').addEventListener('click', function () {
+                        modal.style.display = 'none';
+                    });
+
+                    // Close modal when clicking outside
+                    window.addEventListener('click', function (event) {
+                        if (event.target === modal) {
+                            modal.style.display = 'none';
+                        }
+                    });
+
+                    // Handle search
+                    modal.querySelector('#search-btn').addEventListener('click', function () {
+                        performServiceSearch(serviceType);
+                    });
+                }
+
+                // Update modal content based on service type
+                const serviceContent = modal.querySelector('#service-content');
+                switch (serviceType) {
+                    case 'flights':
+                        serviceContent.innerHTML = `
+                                <div class="flight-search">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>From</label>
+                                            <input type="text" id="flight-from" placeholder="City or Airport">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>To</label>
+                                            <input type="text" id="flight-to" placeholder="City or Airport">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Departure</label>
+                                            <input type="date" id="flight-departure">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Return</label>
+                                            <input type="date" id="flight-return">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Passengers</label>
+                                            <select id="flight-passengers">
+                                                <option value="1">1 Adult</option>
+                                                <option value="2">2 Adults</option>
+                                                <option value="3">3 Adults</option>
+                                                <option value="4">4 Adults</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Class</label>
+                                            <select id="flight-class">
+                                                <option value="economy">Economy</option>
+                                                <option value="premium">Premium Economy</option>
+                                                <option value="business">Business</option>
+                                                <option value="first">First Class</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                        break;
+
+                    case 'hotels':
+                        serviceContent.innerHTML = `
+                                <div class="hotel-search">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Destination</label>
+                                            <input type="text" id="hotel-destination" placeholder="City, Hotel, or Area">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Check-in</label>
+                                            <input type="date" id="hotel-checkin">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Check-out</label>
+                                            <input type="date" id="hotel-checkout">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Rooms</label>
+                                            <select id="hotel-rooms">
+                                                <option value="1">1 Room</option>
+                                                <option value="2">2 Rooms</option>
+                                                <option value="3">3 Rooms</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Guests</label>
+                                            <select id="hotel-guests">
+                                                <option value="1">1 Guest</option>
+                                                <option value="2">2 Guests</option>
+                                                <option value="3">3 Guests</option>
+                                                <option value="4">4 Guests</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                        break;
+
+                    case 'exchange':
+                        serviceContent.innerHTML = `
+                                <div class="exchange-search">
+    <div class="form-row">
+        <div class="form-group">
+            <label>From</label>
+            <select id="exchange-from">
+                <option value="USD">US Dollar (USD)</option>
+                <option value="EUR">Euro (EUR)</option>
+                <option value="GBP">British Pound (GBP)</option>
+                <option value="JPY">Japanese Yen (JPY)</option>
+                <option value="ZIG">ZIG (ZIG)</option> <!-- Added ZIG -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label>To</label>
+            <select id="exchange-to">
+                <option value="USD">US Dollar (USD)</option>
+                <option value="EUR">Euro (EUR)</option>
+                <option value="GBP">British Pound (GBP)</option>
+                <option value="JPY">Japanese Yen (JPY)</option>
+                <option value="ZIG">ZIG (ZIG)</option> <!-- Added ZIG -->
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group">
+            <label>Amount</label>
+            <input type="number" id="exchange-amount" placeholder="0.00">
+        </div>
+    </div>
+</div>
+                            `;
+                        break;
+
+                    case 'activities':
+                        serviceContent.innerHTML = `
+                                <div class="activities-search">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Destination</label>
+                                            <input type="text" id="activities-destination" placeholder="City or Area">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Date</label>
+                                            <input type="date" id="activities-date">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Category</label>
+                                            <select id="activities-category">
+                                                <option value="all">All Activities</option>
+                                                <option value="tours">Tours</option>
+                                                <option value="adventure">Adventure</option>
+                                                <option value="culture">Culture</option>
+                                                <option value="food">Food & Drink</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                        break;
+                }
+
+                // Show the modal
+                modal.style.display = 'block';
+
+                // Set default dates
+                setDefaultDates(serviceType);
+            }
+
+            // Set default dates in forms
+            function setDefaultDates(serviceType) {
+                const today = new Date();
+                const tomorrow = new Date();
+                tomorrow.setDate(today.getDate() + 1);
+
+                const formatDateInput = (date) => date.toISOString().split('T')[0];
+
+                switch (serviceType) {
+                    case 'flights':
+                        document.getElementById('flight-departure').value = formatDateInput(today);
+                        document.getElementById('flight-return').value = formatDateInput(tomorrow);
+                        break;
+                    case 'hotels':
+                        document.getElementById('hotel-checkin').value = formatDateInput(today);
+                        document.getElementById('hotel-checkout').value = formatDateInput(tomorrow);
+                        break;
+                    case 'activities':
+                        document.getElementById('activities-date').value = formatDateInput(today);
+                        break;
+                }
+            }
+
+            // Perform search (simulated)
+            function performServiceSearch(serviceType) {
+                const resultsContainer = document.querySelector('#service-modal #results-container');
+                resultsContainer.innerHTML = '<div class="loading">Searching... Please wait</div>';
+
+                // Simulate API call delay
+                setTimeout(() => {
+                    let resultsHTML = '';
+                    const randomResults = Math.floor(Math.random() * 5) + 3; // 3-7 results
+
+                    switch (serviceType) {
+                        case 'flights':
+                            resultsHTML = '<h3>Available Flights</h3>';
+                            for (let i = 0; i < randomResults; i++) {
+                                const price = Math.floor(Math.random() * 900) + 100;
+                                const duration = `${Math.floor(Math.random() * 10) + 1}h ${Math.floor(Math.random() * 60)}m`;
+                                resultsHTML += `
+                                        <div class="result-item flight-result">
+                                            <div class="flight-info">
+                                                <div class="flight-airline">${['Delta', 'United', 'American', 'Lufthansa', 'Emirates'][i % 5]}</div>
+                                                <div class="flight-times">
+                                                    <span>08:00</span> → <span>${10 + i}:${i * 10}</span>
+                                                </div>
+                                                <div class="flight-duration">${duration}</div>
+                                            </div>
+                                            <div class="flight-price">$${price}</div>
+                                            <button class="book-now">Book Now</button>
+                                        </div>
+                                    `;
+                            }
+                            break;
+
+                        case 'hotels':
+                            resultsHTML = '<h3>Available Hotels</h3>';
+                            for (let i = 0; i < randomResults; i++) {
+                                const price = Math.floor(Math.random() * 300) + 50;
+                                const rating = (Math.random() * 2 + 3).toFixed(1);
+                                resultsHTML += `
+                                        <div class="result-item hotel-result">
+                                            <div class="hotel-image" style="background-image: url('https://source.unsplash.com/random/200x150/?hotel,${i}')"></div>
+                                            <div class="hotel-details">
+                                                <h4>${['Grand Hotel', 'Seaside Resort', 'Mountain Lodge', 'City Center Hotel', 'Boutique Inn'][i % 5]}</h4>
+                                                <div class="hotel-rating">${'★'.repeat(Math.floor(rating))} (${rating})</div>
+                                                <div class="hotel-amenities">
+                                                    <span class="amenity">WiFi</span>
+                                                    <span class="amenity">Pool</span>
+                                                    <span class="amenity">Restaurant</span>
+                                                </div>
+                                            </div>
+                                            <div class="hotel-price">
+                                                <div class="price-per-night">$${price}/night</div>
+                                                <button class="book-now">Book Now</button>
+                                            </div>
+                                        </div>
+                                    `;
+                            }
+                            break;
+
+                        case 'exchange':
+                            const fromCurrency = document.getElementById('exchange-from').value;
+                            const toCurrency = document.getElementById('exchange-to').value;
+                            const amount = document.getElementById('exchange-amount').value || 100;
+
+                            // Simulated exchange rates
+                            const rates = {
+                                USD: { EUR: 0.85, GBP: 0.73, JPY: 110, ZIG: 2.00 }, // Added conversion to ZIG
+                                EUR: { USD: 1.18, GBP: 0.86, JPY: 130, ZIG: 1.70 }, // Added conversion to ZIG
+                                GBP: { USD: 1.37, EUR: 1.16, JPY: 150, ZIG: 2.30 }, // Added conversion to ZIG
+                                JPY: { USD: 0.0091, EUR: 0.0077, GBP: 0.0067, ZIG: 0.018 }, // Added conversion to ZIG
+                                ZIG: { USD: 0.50, EUR: 0.59, GBP: 0.43, JPY: 55.56 } // Added conversion from ZIG to other currencies
+                            };
+                         
+
+                            const rate = rates[fromCurrency]?.[toCurrency] || 1;
+                            const converted = (amount * rate).toFixed(2);
+
+                            resultsHTML = `
+                                    <h3>Currency Exchange</h3>
+                                    <div class="exchange-result">
+                                        <div class="exchange-rate">
+                                            1 ${fromCurrency} = ${rate.toFixed(4)} ${toCurrency}
+                                        </div>
+                                        <div class="exchange-amount">
+                                            ${amount} ${fromCurrency} = ${converted} ${toCurrency}
+                                        </div>
+                                        <button class="exchange-now">Exchange Now</button>
+                                    </div>
+                                `;
+                            break;
+
+                        case 'activities':
+                            resultsHTML = '<h3>Available Activities</h3>';
+                            for (let i = 0; i < randomResults; i++) {
+                                const price = Math.floor(Math.random() * 100) + 15;
+                                const rating = (Math.random() * 2 + 3).toFixed(1);
+                                resultsHTML += `
+                                        <div class="result-item activity-result">
+                                            <div class="activity-image" style="background-image: url('https://source.unsplash.com/random/200x150/?activity,${i}')"></div>
+                                            <div class="activity-details">
+                                                <h4>${['City Tour', 'Hiking Adventure', 'Cooking Class', 'Wine Tasting', 'Boat Cruise'][i % 5]}</h4>
+                                                <div class="activity-rating">${'★'.repeat(Math.floor(rating))} (${rating})</div>
+                                                <div class="activity-description">
+                                                    ${['Explore the city with a local guide', 'Experience nature at its finest', 'Learn to cook local dishes', 'Sample the finest regional wines', 'Enjoy a scenic cruise'][i % 5]}
+                                                </div>
+                                            </div>
+                                            <div class="activity-price">
+                                                <div class="price-per-person">From $${price}/person</div>
+                                                <button class="book-now">Book Now</button>
+                                            </div>
+                                        </div>
+                                    `;
+                            }
+                            break;
+                    }
+
+                    resultsContainer.innerHTML = resultsHTML;
+
+                    // Add event listeners to "Book Now" buttons
+                    document.querySelectorAll('.book-now').forEach(button => {
+                        button.addEventListener('click', function () {
+                            showToast('Booking functionality would be implemented here!\nIn a real app, this would proceed to payment.');
+                        });
+                    });
+
+                    // Add event listener to "Exchange Now" button if it exists
+                    const exchangeButton = document.querySelector('.exchange-now');
+                    if (exchangeButton) {
+                        exchangeButton.addEventListener('click', function () {
+                            showToast('Currency exchange would be processed here!\nFunds would be converted in your wallet.');
+                        });
+                    }
+                }, 1500); // Simulate network delay
+            }
+
+            // Initialize the app if already logged in
+            if (localStorage.getItem('isLoggedIn') === 'true') {
+                init();
+            }
+        });
+    </script>
+</body>
+</html>
